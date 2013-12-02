@@ -1,0 +1,61 @@
+how many pages is 500 words? double spaced
+500 words is about 0.83 pages single spaced, 12pt, Times New Roman font, with standard 1 inch margins.
+
+500 words is about 1.65 pages Double spaced, 12pt, Times New Roman font, with standard 1 inch margins.
+
+500 words is about 1.24 Pages 1.5 spaced, 12pt, Times New Roman font, with standard 1 inch margins.
+
+500 words is about 0.87 Pages Single spaced, 12pt, Arial or Helvetica font, with standard 1 inch margins.
+
+500 words is about 1.74 Pages Double spaced, 12pt, Arial font, with standard 1 inch margins.
+
+500 words is about 1.73 Pages Double spaced, 12pt, Georgia font, with standard 1 inch margins.
+
+500 words is about 0.86 Pages Single spaced, 12pt, Georgia font, with standard 1 inch margins.
+
+500 words is about 1.11 Pages Single spaced, 12pt, Courier New font, with standard 1 inch margins.
+
+500 words is about 2.21 Pages Double spaced, 12pt, Courier New font, with standard 1 inch margins.
+
+how many pages is 500 words double spaced
+
+{The number of pages|How many pages} you have {depends on|is dependant on|varies depending on} the font {being used|you are using}, the font size, and {the document's spacing setting|whether the doucument is single or double spaced.}
+
+For {example|instance}, #NUMWORDS# 
+
+
+200
+250
+1500
+==
+
+1200
+1000
+3000
+300
+350
+3500
+750 600
+40000
+4000
+400
+4500
+500
+5000
+50000
+600
+6000
+60000
+650
+750
+700
+7000
+7500
+800
+8000
+80000
+900
+90000
+950
+
+

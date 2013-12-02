@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+  <title>Number of Pages: A simple little calculator to find out how many pages worth of stuff you have.</title>
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="style.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+      <![endif]-->
+    </head>
+
+    <body>
+
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Number of Pages</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="speech.html">Speech Calculator</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="starter-template">
+              <h1>Number of Pages Calculator</h1>
+              <p>How many pages will your text fill up? How many pages by words? Find out below.</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="panel panel-default">
+              <div class="panel-heading">Fill in the following fields.</div>
+              <div class="panel-body">
+
+                <form class="form" role="form">
+
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="radioWordCount" value="wordCountOption" checked onClick = "rgUseWordCount()">
+                      I already know how many words, just tell me pages!
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="radioUserText" value="userTextOption" onClick = "rgUseTextSample()">
+                      I have some text, tell me how many pages!
+                    </label>
+                  </div>
+
+                  <div id="userTextDiv" class="col-lg-12 form-group">
+                    <label class="sr-only" for="userText">Paste your text here!</label>
+                    <textarea id="userText" class="form-control" rows="1.5" placeholder="Paste your text here!"></textarea>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label class="sr-only" for="numPages">Words</label>
+                    <div class="col-lg-2">
+                      <input type="number" class="form-control" id="userNumWords" placeholder="Num. of Words" >
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="sr-only" for="fontSize">Font Size</label>
+                    <div class="col-lg-2">
+                      <input type="number" class="form-control" id="userFontSize" placeholder="Font Size">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-lg-3">
+                      <select id="userFontName" class="form-control">
+                        <option>Font:</option>
+                        <option>Times New Roman</option>
+                        <option>Arial</option>
+                        <option>Helvetica</option>
+                        <option>Georgia</option>
+                        <option>Courier New</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-lg-2">
+                      <select id="userSpacing" class="form-control">
+                        <option>Spacing:</option>
+                        <option>Single</option>
+                        <option>Double</option>
+                        <option>1.5</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-lg-3">
+                      <button type="Button" class="btn btn-danger" onClick="rgcalc()">Calculate!</button>
+                    </div>
+                  </div>
+                </form>
+
+                <div class="clearfix">&nbsp;</div><!-- this one lines add some space! horray bootstrap -->
+
+                <div id ="errorMsg" class="alert alert-danger alert-dismissable">
+                 <!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
+                 <div id="errorMsgText"></div>
+               </div>
+
+               <div id="warningMsg" class="alert alert-warning alert-dismissable">
+                 <!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
+                 <div id="warningMsgText"></div>
+               </div>
+
+               <div><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Results</div>
+            <div class="panel-body">
+              <h2 id="pageCount"></h2>
+              <p id="pageCountDetails"></p>
+              <p id="wordCount"></p>
+              <p>(all numbers shown are estimates).</p>
+
+            </div>
+          </div>
+        </div>
+      </div><!-- ROW 1 -->
+
+      <div class="row">
+        <div class="col-md-12">
+         <div class="panel panel-default">
+          <div class="panel-body">
+            <h3>How many pages is 500 words?</h3>
+           <p>500 words is about 0.83 pages single spaced, 12pt, Times New Roman font, with standard 1 inch margins.</p>
+           <p>500 words is about 1.65 pages Double spaced, 12pt, Times New Roman font, with standard 1 inch margins.</p>
+           <p>500 words is about 1.24 Pages 1.5 spaced, 12pt, Times New Roman font, with standard 1 inch margins.</p>
+           <p>500 words is about 0.87 Pages Single spaced, 12pt, Arial or Helvetica font, with standard 1 inch margins.</p>
+           <p>500 words is about 1.74 Pages Double spaced, 12pt, Arial font, with standard 1 inch margins.</p>
+           <p>500 words is about 1.73 Pages Double spaced, 12pt, Georgia font, with standard 1 inch margins.</p>
+           <p>500 words is about 0.86 Pages Single spaced, 12pt, Georgia font, with standard 1 inch margins.</p>
+           <p>500 words is about 1.11 Pages Single spaced, 12pt, Courier New font, with standard 1 inch margins.</p>
+           <p>500 words is about 2.21 Pages Double spaced, 12pt, Courier New font, with standard 1 inch margins.</p>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <div class="row">
+    <div class="col-md-12">
+     <div class="panel panel-default">
+      <div class="panel-body">
+       Copyright NumberOfPages.com 2013.
+     </div>
+   </div>
+ </div>
+</div>
+
+</div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Pages core JavaScript COMES AFTER JQUERY!
+    ================================================== -->
+    <script type="text/javascript">
+
+    rgClearWarnings();
+    rgHideTextBox();
+
+    function rgClearWarnings() {
+      $('#warningMsg').hide();
+      $('#errorMsg').hide();
+    }
+
+    function rgWarning(pAlertMessage) {
+      $('#warningMsgText').text(pAlertMessage);
+      $('#warningMsg').show();
+
+    }
+
+    function rgError(pErrorMessage){
+      $('#errorMsgText').text(pErrorMessage); 
+      $('#errorMsg').show();
+      exit();
+    }
+
+    function rgUseTextSample() {
+      rgDisableWordCountFld();
+      rgShowTextBox();
+    }
+
+    function rgUseWordCount() {
+      rgHideTextBox();
+      rgEnableWordCountFld();
+    }
+
+    function rgHideTextBox() {
+      $('#userTextDiv').hide();
+    }
+
+    function rgShowTextBox() {
+      $('#userTextDiv').show();
+    }
+
+    function rgDisableWordCountFld() {
+      //$('#userNumWords').attr( 'disabled', 'True');
+      $('#userNumWords').hide();
+    }
+
+    function rgEnableWordCountFld() {
+      //$('#userNumWords').removeAttr( 'disabled', 'False');
+      $('#userNumWords').show();
+    }
+
+    function rgcalc() {
+      rgClearWarnings();
+
+      // HANDLE OPTIONS
+      var option = $("input[name=optionsRadios]:checked").val();
+      
+      if (option == "wordCountOption") {
+        var userNumWords = $('#userNumWords').val();
+        if (isEmpty(userNumWords)) {rgError("Oops! Check that you enetered the number of words correctly.")
+          userNumWords = 1000;
+      }
+    } else if (option == "userTextOption") {
+      var userText = $('#userText').val();
+      var userNumWords = wordCount(userText);
+      if (isNaN(userNumWords)) {rgError("Oops! Did you paste in or type your text?")}
+    } 
+  else {
+    rgWarning("Hey! You forgot to select an option, so this assumes you have 1000 words!");
+    var userNumWords = 1000;
+  }
+
+  var userFontSize = $('#userFontSize').val();
+  var userFontName = $('#userFontName').val();
+  var userSpacing = $('#userSpacing').val();
+
+  if (isNaN(userNumWords)) {rgError("Oops! Number of word must be a number! ")}
+    if (isEmpty(userFontSize)) {userFontSize = 12 }
+      if (isNaN(userFontSize)) {rgError("Oops! Font size must be a number!")};
+    if (userFontSize > 48 || userFontSize < 8) { rgWarning("This calculator works best for font sizes from 8 to 48! Still, this is our best guess.")}
+      if (userFontName == "Font:") {userFontName = "Times New Roman"}
+        if (userSpacing == "Spacing:") {userSpacing = "Single"}
+
+          numPages = numPagesCalc(userSpacing,userFontName,userFontSize,userNumWords);
+
+        $('#pageCount').text(numPages.toFixed(2) + " Pages");
+        $('#pageCountDetails').text(userSpacing + " spaced, " + userFontSize + "pt, " + userFontName + " font, with standard 1 inch margins.");
+        $('#wordCount').text(userNumWords + " Words");
+      }
+
+      function numPagesCalc(userSpacing,userFontName,userFontSize,userNumWords){
+        var coeffs = theData();
+        var A = coeffs[userSpacing][userFontName]["A"];
+        var B = coeffs[userSpacing][userFontName]["B"];
+        var C = coeffs[userSpacing][userFontName]["C"];
+        var D = coeffs[userSpacing][userFontName]["D"];
+
+        var numPages = (userNumWords/250000)*((A*(Math.pow(userFontSize, 3)))+(B*(Math.pow(userFontSize, 2))) + (C*(userFontSize)) + D);
+        return numPages
+      }
+
+      function wordCount(sometext){
+        var words=sometext.match(/\w+/g).length;
+        return words;
+      }
+
+      function isEmpty(str) {
+        return (!str || 0 === str.length);
+      }
+
+      function isBlank(str) {
+        return (!str || /^\s*$/.test(str));
+      }
+
+      function theData() {
+        return {
+         "Single":{
+          "Times New Roman":{
+           "A":0.012,
+           "B":1.824,
+           "C":10.68,
+           "D":1.649
+
+         },
+         "Verdana":{
+           "A":-0.014,
+           "B":4.523,
+           "C":26.73,
+           "D":205.7
+
+         },
+         "Arial":{
+           "A":0,
+           "B":3.061,
+           "C":-13.65,
+           "D":158.5
+         },
+         "Helvetica":{
+           "A":0,
+           "B":3.061,
+           "C":-13.65,
+           "D":158.5
+         },
+         "Courier New":{
+           "A":0,
+           "B":4.163,
+           "C":-18.82,
+           "D":181.4
+         },
+         "Georgia":{
+           "A":0,
+           "B":3.142,
+           "C":-17.33,
+           "D":184.9
+         }
+       },
+       "Double":{
+        "Times New Roman":{
+         "A":0.021,
+         "B":3.143,
+         "C":33.94,
+         "D":-71.9
+       },
+       "Verdana":{
+         "A":-0.143,
+         "B":16.75,
+         "C":-201.6,
+         "D":1222
+       },
+       "Arial":{
+         "A":0,
+         "B":5.411,
+         "C":-10.53,
+         "D":218.6
+       },
+       "Helvetica":{
+         "A":0,
+         "B":5.411,
+         "C":-10.53,
+         "D":218.6
+       },
+       "Courier New":{
+         "A":0,
+         "B":7.195,
+         "C":-9.629,
+         "D":186.3
+       },
+       "Georgia":{
+         "A":0.011,
+         "B":4.42,
+         "C":13.97,
+         "D":39.75
+       }
+     },
+     "1.5":{
+      "Times New Roman":{
+       "A":0,
+       "B":3.416,
+       "C":14.01,
+       "D":-41.2
+     },
+     "Verdana":{
+       "A":0.08,
+       "B":-0.3,
+       "C":93.93,
+       "D":-412
+     },
+     "Arial":{
+       "A":0,
+       "B":3.531,
+       "C":23.73,
+       "D":-122.9
+     },
+     "Helvetica":{
+       "A":0,
+       "B":3.531,
+       "C":23.73,
+       "D":-122.9
+     },
+     "Courier New":{
+       "A":-0.064,
+       "B":10.21,
+       "C":-102.4,
+       "D":664.6
+     },
+     "Georgia":{
+       "A":0,
+       "B":3.842,
+       "C":5.83,
+       "D":23.35
+     }
+   }
+ }
+}
+
+</script>
+
+</body>
+</html>
